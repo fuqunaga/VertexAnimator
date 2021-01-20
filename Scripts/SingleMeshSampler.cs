@@ -15,6 +15,12 @@ namespace VertexAnimater {
             Output = new Mesh();
 
             _skin = target.GetComponentInChildren<SkinnedMeshRenderer> ();
+            if (_skin.rootBone != null)
+            {
+                var trans = _skin.transform;
+                trans.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                trans.localScale = Vector3.one;
+            }
             
             _animation = target.GetComponentInChildren<Animation> ();
             _state = _animation[_animation.clip.name];
